@@ -3,13 +3,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="https://i.ibb.co/SyZdV8n/20231106-184147.png">
+    <!--<link rel="icon" href=" Your Fevicol link "> -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title> {{file_name}} ARS official</title>
+    <title>Watch {{file_name}} - YOUR CHANNEL NAME </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<style>
 <style>
     body {
         font-family: sans-serif;
@@ -22,7 +21,7 @@
         position: relative;
         height: 55px;
         color: #ffffff;
-        background-color: #a860f0;
+        background-color: #2962ff;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
         display: flex;
         justify-content: space-between;
@@ -103,7 +102,6 @@
     }
 
     #button-container1 button#vlc-btn,
-    #button-container1 button#dl-btn,	
     #button-container1 button#pi-btn,
     #button-container1 button#sp-btn,
     #button-container1 button#mx-btn {
@@ -111,10 +109,11 @@
         color: #ffffff; 
     }
 
+    #button-container2 button#dl-btn,
     #button-container2 button#tgfile-btn,
     #button-container2 button#tg-btn {
-        background-color: #a860f0; 
-        color: #45f70a; 
+        background-color: #2D76FF; 
+        color: #ffffff; 
     }
 
     #button-container2 {
@@ -152,7 +151,7 @@
     }
     
     #info-box {
-        border: 1px solid #140cf0;
+        border: 1px solid #8A8A8A;
         border-radius: 10px;
         padding: 5px;
         width: auto;
@@ -203,11 +202,11 @@
     }
 
     #vlc-btn:hover,
-    #dl-btn:hover,
     #mx-btn:hover {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 
+    #dl-btn:hover,
     #tgfile-btn:hover,
     #tg-btn:hover {
         background-color: #E8E8E8;
@@ -218,56 +217,28 @@
 <body>   
 <div id="banner">
     <div class="left-content">
-        <span class="black-text">𝗦𝘁𝗿𝗲𝗮𝗺𝗗𝗶𝘀𝗸</span>
+        <span class="black-text">Online Streaming</span>
     </div>
 </div>
-<div style="margin-bottom: 7px; margin-top: 7px"></div>
+<div style="margin-bottom: 5px; margin-top: 5px"></div>
 <div class="site-content">
     <!--
 YOUR ADS
     -->
-    <!--Video Player Start-->
-
-            <div class="justify-content-center align-items-center w-100 d-flex  flex-wrap">
-            <div class="lg:w-9/12 lg:px-12 lg:py-4 w-full  border border-danger wow animate__animated animate__fadeInLeft">
-                <video id="player" class="player " playsinline controls>
-                    <source src="%s" type="video/mp4">
-                </video>
-            </div>
+    <div class="playercontainerbox"> 
+        <div id="player-container">
+            <video id="player" playsinline controls>
+                <source src={{ src }} type="video/mp4">
+            </video>
         </div>
-            <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
-	<script>
-        const controls = [
-            'play-large',
-            'rewind','play', 
-            'fast-forward', 
-            'progress', 
-            'current-time',
-            'duration',
-            'mute',
-            'volume',
-            'captions',
-            'settings',
-            'pip',
-            'airplay',
-            'download',
-            'fullscreen'
-        ];
-        document.addEventListener('DOMContentLoaded', () => {
-            const player = Plyr.setup('.player', { controls });
-        });
-
-    </script>
-           
-            <!--Video Player End-->
     </div>
-	  <p style="font-size: 7px; color:#f20a0a;">If the screen turns white then your browser is not supporting the video, then you can play it using the Application</p>
     <div class="containerbox"> 
-     <div id="info-box">
-     <p style="font-size: 10px; color:#120e0e;">ꜰɪʟᴇ ɴᴀᴍᴇ : {{file_name}}</p>
-     <p style="font-size: 10px; color:#120e0e;">ꜰɪʟᴇ ꜱɪᴢᴇ : {{file_size}}</p>
-     <p style="font-size: 10px; color:#120e0e;">Shares by : Team ARS & i Papcorn Prime Bot</p>     
-	</div>
+        <div id="info-box">
+           <p style="font-size: 16px; color:#7b89a3;">File Details :</p>
+           <p style="font-size: 13px; color:#7b89a3;">Name : {{file_name}}</p>
+           <p style="font-size: 13px; color:#7b89a3;">Size : {{file_size}}</p>
+           <p style="font-size: 13px; color:#7b89a3;">Shared by : ******* (Privacy Enabled)</p>
+        </div>
         <div style="margin-bottom: 5px; margin-top: 10px">Stream Options :</div>
         <div id="button-container1">
             <button id="vlc-btn" onclick="playOnline()">
@@ -276,19 +247,41 @@ YOUR ADS
             <button id="mx-btn" onclick="playOnlineMx()"><img src="https://i.ibb.co/djV3Fn8/mxlogo.png" alt="mx_logo" width="120px">
             </button>
         </div>
-        <div style="margin-bottom: 7px; margin-top: 7px">
+        <div style="margin-bottom: 5px; margin-top: 5px">
         <div id="button-container1">
             <button id="sp-btn" onclick="playOnlinesp()">
                 <img src="https://i.ibb.co/vZxWgz5/ZKTgV9HV.png" alt="splayer_logo" width="130px">
             </button>
             <button id="pi-btn" onclick="playOnlinepi()"><img src="https://i.ibb.co/JsDNHgz/c0C4vnAa.png" alt="playit_logo" width="140px">
             </button>
-	</div>
-	    <div id="button-container1">
-            <button id="dl-btn" onclick="lazyDownload()"><img src="https://i.ibb.co/w0PvGHj/love-kirti.png" alt="download_logo" width="110px" height="35px"/>
-	    </button>
-       </div>
-  <script>      
+        </div>
+        <div style="margin-bottom: 5px; margin-top: 10px">Download Options :</div>
+        </div>
+                <a id="demo3" onclick="showLinkModal('{{src}}')" class="block">
+                  <i class="fa fa-download"></i> Download File (open in New Tab)
+                </a>
+              </div>
+
+              <div id="link-modal" class="modal">
+                <div class="modal-content">
+                  <span class="close" onclick="closeLinkModal()">&times;</span>
+                  <p>The link will be shown in 5 seconds:</p>
+                  <p id="link-timer">5</p>
+                  <p id="link"></p>
+                  <div>{{ad5}}</div>
+                </div>
+              </div>
+            
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.js"></script>
+        <script>
+            const player = new Plyr('#player', {
+                controls: ['play', 'progress', 'rewind', 'fast-forward', 'current-time', 'fullscreen', 'settings']
+            });
+        </script>
+        </div>    
+        <div>
+<script>
     const currentUrl = window.location.href;
     const finalUrl = currentUrl.replace("/watch/", "/");
 
@@ -300,8 +293,8 @@ YOUR ADS
 
     function playOnlineMx() {
         const finalLinkUrl = finalUrl;
-        const openMx = `intent:${finalLinkUrl}#Intent;package=com.mxtech.videoplayer.ad;S.title={{filename}};end`;
-        window.location.href = openMx;
+        const mxUrl = `intent:${finalLinkUrl}#Intent;package=com.mxtech.videoplayer.ad;S.title={{file_name}};end`;
+        window.location.href = mxUrl;
     }
     
     function playOnlinesp() {
@@ -316,16 +309,82 @@ YOUR ADS
         window.location.href = piUrl;
     }
 
-    function lazyDownload() {
-            const finalLinkUrl = finalUrl;
-            window.location.href = finalLinkUrl;
+    function openTgBot() {
+        const createLinkUrl = "https://telegram.dog/";
+        window.open(createLinkUrl, "_blank");
+    }
+
+    function openModalTG() {
+        const modal = document.getElementById("myModal");
+        modal.style.display = "block";
+
+        const words = [
+            "Received File request...✅",
+            "Processing your request...⌛",
+            "Generating your link...🔗",
+            "Sending link to you...🚀",
+            "Redirecting To Telegram...😉"
+        ];
+
+        let index = 0;
+        const timerElement = document.getElementById("timer");
+        timerElement.innerText = words[index];
+
+        const timer = setInterval(() => {
+            index++;
+            if (index < words.length) {
+                timerElement.innerText = words[index];
+            } else {
+                clearInterval(timer);
+                TGre();
+                modal.style.display = "none";
+            }
+        }, 1000);
+    }
+
+    function TGre() {
+        const tglink = "";
+        window.location.href = tglink;
+    }
+
+    function openModal() {
+        const modal = document.getElementById("myModal");
+        modal.style.display = "block";
+
+        const words = [
+            "Received Download request...✅",
+            "Processing your request...⌛",
+            "Generating your link...🔗",
+            "Sending link to you...🚀",
+            "Download has started...😉"
+        ];
+
+        let index = 0;
+        const timerElement = document.getElementById("timer");
+        timerElement.innerText = words[index];
+
+        const timer = setInterval(() => {
+            index++;
+            if (index < words.length) {
+                timerElement.innerText = words[index];
+            } else {
+                clearInterval(timer);
+                download();
+                modal.style.display = "none";
+            }
+        }, 1000);
+    }
+
+    function download() {
+        const finalLinkUrl = finalUrl;
+        window.location.href = finalLinkUrl;
     }
 </script>
- <!-- disabling right click -->
-    <script>
-        document.addEventListener("contextmenu", function (e) {
+<script>
+    document.addEventListener('contextmenu', function (e) {
         e.preventDefault();
     });
+
     document.addEventListener('keydown', function (e) {
         if (
             e.key === 'F12' ||
@@ -346,12 +405,13 @@ YOUR ADS
 
           </center>  --> 
 <footer>
-        <p style="font-size: 10px; color:#7b89a3;padding-top: 30px ;margin:0px 10px; border-top: 1px solid #c2cee3;">
-      This website only provide service that help you convert your video to link easily. Stream disk is a cloud storage service that lets you save files online and sync them to your devices You can report the file/video that contains a problem like copyright, porn, violence, etc, we will not provide service for those file/videos. Send DMCA: Report <a href="https://telegram.dog/iPapdiscussion" style="color: darkorange"><b>Here</b></a>
-      <p style="text-align:center">&copy; StreamDisk 2023-2024 </p>
+        <p style="font-size: 15px; color:#7b89a3;padding-top: 30px ;margin:0px 10px; border-top: 1px solid #c2cee3;">
+      This website only provide service that help you convert your Telegram File to Online Streaming.
+      You can report the file/video that contains a problem like copyright, 18+, violence, et. Report <a href="https://telegram.dog" style="color: darkorange"><b>Here</b></a>
+      <p style="text-align:center">&copy; Copyright  </p>
       <!--
       YOUR ADS 
       -->
 </footer>    
 </body>
-        </html>
+</html>
