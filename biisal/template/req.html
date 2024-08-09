@@ -1,171 +1,362 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FileStreamBot | {{file_name}}</title>
-    <link rel="icon" href="https://i.ibb.co/Hh4kF2b/icon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="https://i.ibb.co/Hh4kF2b/icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/proavipatil/data@main/fs/src/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/proavipatil/data@main/fs/src/plyr.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="https://i.ibb.co/SyZdV8n/20231106-184147.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title> {{file_name}} ARS official</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+<style>
+    body {
+        font-family: sans-serif;
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+    }
 
+    #banner {
+        position: relative;
+        height: 55px;
+        color: #ffffff;
+        background-color: #a860f0;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    .left-content {
+        flex: 1;
+        text-align: center;
+    }
+
+    .black-text {
+        color: white;
+    }
+
+    .right-content {
+        margin-left: 20px;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ff9b05;
+        color: white;
+        text-decoration: none;
+    }
+
+    .button:hover {
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+
+
+    #player-container {
+        margin: 1px;
+    }
+
+    .containerbox {
+        overflow: hidden;
+        *zoom: 1;
+        margin: 0 10px;
+    }
+
+    .playercontainerbox {
+        overflow: hidden;
+        *zoom: 1;
+        margin: 0 1px;
+    }
+
+    .site-content {
+        padding: 20px;
+    }
+
+    #text {
+        margin: 20px;
+    }
+
+    #button-container1 {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    #button-container1 button {
+        flex: 1 0 auto;
+        height: 40px;
+        padding: 0 20px;
+        margin: 5px;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: box-shadow 0.3s, background-color 0.3s, color 0.3s;
+    }
+
+    #button-container1 button:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #button-container1 button#vlc-btn,
+    #button-container1 button#dl-btn,	
+    #button-container1 button#pi-btn,
+    #button-container1 button#sp-btn,
+    #button-container1 button#mx-btn {
+        background-color: Lavender; 
+        color: #ffffff; 
+    }
+
+    #button-container2 button#tgfile-btn,
+    #button-container2 button#tg-btn {
+        background-color: #a860f0; 
+        color: #45f70a; 
+    }
+
+    #button-container2 {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #button-container2 button {
+        height: 40px;
+        padding: 0 20px;
+        margin: 5px;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: box-shadow 0.3s, background-color 0.3s, color 0.3s;
+    }
+
+    #button-container2 button:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    
+    #info-box {
+        border: 1px solid #140cf0;
+        border-radius: 10px;
+        padding: 5px;
+        width: auto;
+        text-align: left;
+        margin: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+        word-wrap: break-word;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 300px;
+        text-align: center;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    #mx-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        padding: 0 20px;
+        margin: 5px;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: box-shadow 0.3s, background-color 0.3s, color 0.3s;
+        background-color: #f0f0f0; 
+        color: #000000; 
+    }
+
+    #mx-btn svg {
+        width: 20px;
+        height: 20px; 
+        margin-right: 5px; 
+    }
+
+    #vlc-btn:hover,
+    #dl-btn:hover,
+    #mx-btn:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #tgfile-btn:hover,
+    #tg-btn:hover {
+        background-color: #E8E8E8;
+    }
+</style>
 </head>
 
-<body>
-    <nav>
-        <div class="nleft">
-            <a href="#">
-                <h3 id="heading" style="z-index: 100;" class="magnet title">FILE STREAM</h3>
-            </a>
-        </div>
-        <div class="nryt">
-            <a class="home-btn magnet" href="#main" onclick="toggleWidthnav(this)">HOME</a>
-
-            <a href="#abtus" class="about-btn magnet" onclick="toggleWidthnav(this)">ABOUT</a>
-        </div>
-    </nav>
-    <center>
-        <div class="about-nav">
-            <a href="#abtus" class="wlcm magnet" onclick="toggleWidth(this)">WELCOME</a>
-            <a href="#channels" class="abt-chnl magnet" onclick="toggleWidth(this)">CHANNELS</a>
-            <a href="#contact" class="magnet contact-btn" onclick="toggleWidth(this)">CONTACT</a>
-        </div>
-    </center>
-
-    <div class="outer">
-        <div class="inner">
-            <div class="main" id="main">
-                <video id="player" class="player" src="{{file_url}}" type="video/mp4" playsinline controls
-                    width="100%"></video>
-                <div class="player"></div>
-                <div class="file-name">
-                    <h4 style="display: inline;">File Name: </h4>
-                    <p style="display: inline;" id="myDiv">{{file_name}}</p><br>
-                    <h4 style="display: inline;">File Size: </h4>
-                    <p style="display: inline;">{{file_size}}</p>
-                </div>
-                <div class="downloadBtn">
-                    <button class="magnet" onclick="streamDownload()">
-                        <img style="height: 30px;" src="https://i.ibb.co/RjzYttX/dl.png" alt="">download video
-                    </button>
-                    <button class="magnet" onclick="copyStreamLink()">
-                        <img src="https://i.ibb.co/CM4Y586/link.png" alt="Copy Link">copy link
-                    </button>
-                    <button class="magnet" onclick="vlc_player()">
-                        <img src="https://i.ibb.co/px6fQs1/vlc.png" alt="">watch in VLC PLAYER
-                    </button>
-                    <button class="magnet" onclick="mx_player()">
-                        <img src="https://i.ibb.co/41WvtQ3/mx.png" alt="">watch in MX PLAYER
-                    </button>
-                    <button class="magnet" onclick="n_player()">
-                        <img src="https://i.ibb.co/Hd2dS4t/nPlayer.png" alt="">watch in nPlayer
-                    </button>
-                </div>
-
-            </div>
-            <div class="abt">
-                <div class="about">
-                    <div class="about-dets">
-
-                        <div class="abt-sec" id="abtus" style="padding: 160px 30px;">
-                            <h1 style="text-align: center;">WELCOME TO OUR <Span>FILE STREAM</Span> BOT</h1>
-                            <p style="text-align: center; line-height: 2;word-spacing: 2px;  letter-spacing: 0.8px;">
-                                This is a Telegram Bot to Stream <span>Movies</span> and <span>Series</span> directly on
-                                Telegram. You can also
-                                <span>download</span> them if you want. This bot is developed by <a
-                                    href="https://github.com/AviPatilPro"><span style="font-weight: 700;">Avi</span></a>
-                                <br><br>If you like this bot, then don't
-                                forget to share it with your friends and family.
-                            </p>
-                        </div>
-
-                        <div class="abt-sec" id="channels">
-                            <h1>JOIN OUR <span>TELEGRAM</span> CHANNELS</h1>
-                            <div class="links chnl-link">
-                                <a class="magnet" href="https://t.me/CheapieDeals">
-                                    <button>CHEAP DEALS</button>
-                                </a>
-                                <a class="magnet" href="https://t.me/FilmyPixel">
-                                    <button>FILMYPIXEL</button>
-                                </a>
-                                <a class="magnet" href="https://t.me/PostersZone">
-                                    <button>POSTERS ZONE</button>
-                                </a>
-                                <a class="magnet" href="https://t.me/EpitomeQuality">
-                                    <button>EPITOME QUALITY</button>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="abt-sec" id="contact">
-                            <p style="text-align: center;">Report Bugs and Contact us on Telegram Below</p>
-                            <div class="links contact">
-                                <a href="https://t.me/AvishkarPatil">
-                                    <button>CONTACT</button>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <footer>
-            <center>
-
-                <div class="movie-cont">
-                    <div class="movieSug">
-                        <div class="movieDets">
-
-                        </div>
-                        <div class="movieimg">
-                            <img src="">
-                        </div>
-                    </div>
-                    <div class="low-width-movie-dets">
-                        <div class="movieStsBar">
-                            <div class="movieDets-mini">
-
-                            </div>
-                        </div>
-                    </div>
-                    <button class="ranMovBtn" onclick="getDets()">Get More Movies Suggestion</button>
-                </div>
-
-            </center>
-
-            <center>
-                <div class="copyright">
-                    <h5 class="text-center">Copyright © 2024 <a href="https://github.com/AviPatilPro"><span
-                                style="font-weight: 700;">Avishkar Patil</span></a>. All
-                        Rights Reserved.</h5>
-                </div>
-            </center>
-        </footer>
+<body>   
+<div id="banner">
+    <div class="left-content">
+        <span class="black-text">𝗦𝘁𝗿𝗲𝗮𝗺𝗗𝗶𝘀𝗸</span>
     </div>
-</body>
+</div>
+<div style="margin-bottom: 7px; margin-top: 7px"></div>
+<div class="site-content">
+    <!--
+YOUR ADS
+    -->
+    <!--Video Player Start-->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.155.0/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/automat/controlkit.js@master/bin/controlKit.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sheryjs/dist/Shery.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const uncopyableElement = document.querySelector(".uncopyable");
+            <div class="container">
+              <video
+                id="myVideo"
+                controls=""
+                src="{{ src }}"
+                width="100%"
+                height="auto"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
+            <script>
+              const controls = [
+                'play-large',
+                'rewind','play', 
+                'fast-forward', 
+                'progress', 
+                'current-time',
+                'duration',
+                'mute',
+                'captions',
+                'settings',
+                'pip',
+                'airplay',
+                'fullscreen'
+              ];
+              document.addEventListener("DOMContentLoaded", () => {
+                const player = Plyr.setup("#myVideo", {
+                  controls,
+                  adTagUrl:"https://www.videosprofitnetwork.com/watch.xml?key=29654bca221e8261067ac49af92b392b",
+                  skipButton:{enabled: true, text: 'Skip ad', delay: 10}
+                });
+              });
+            </script>
+           
+            <!--Video Player End-->
+    </div>
+	  <p style="font-size: 7px; color:#f20a0a;">If the screen turns white then your browser is not supporting the video, then you can play it using the Application</p>
+    <div class="containerbox"> 
+     <div id="info-box">
+     <p style="font-size: 10px; color:#120e0e;">ꜰɪʟᴇ ɴᴀᴍᴇ : {{file_name}}</p>
+     <p style="font-size: 10px; color:#120e0e;">ꜰɪʟᴇ ꜱɪᴢᴇ : {{file_size}}</p>
+     <p style="font-size: 10px; color:#120e0e;">Shares by : Team ARS & i Papcorn Prime Bot</p>     
+	</div>
+        <div style="margin-bottom: 5px; margin-top: 10px">Stream Options :</div>
+        <div id="button-container1">
+            <button id="vlc-btn" onclick="playOnline()">
+                <img src="https://i.ibb.co/GtnGhBV/videolan-vlc-logo-icon-170258.png" alt="vlc_logo" width="110px" height="40px"/>
+            </button>
+            <button id="mx-btn" onclick="playOnlineMx()"><img src="https://i.ibb.co/djV3Fn8/mxlogo.png" alt="mx_logo" width="120px">
+            </button>
+        </div>
+        <div style="margin-bottom: 7px; margin-top: 7px">
+        <div id="button-container1">
+            <button id="sp-btn" onclick="playOnlinesp()">
+                <img src="https://i.ibb.co/vZxWgz5/ZKTgV9HV.png" alt="splayer_logo" width="130px">
+            </button>
+            <button id="pi-btn" onclick="playOnlinepi()"><img src="https://i.ibb.co/JsDNHgz/c0C4vnAa.png" alt="playit_logo" width="140px">
+            </button>
+	</div>
+	    <div id="button-container1">
+            <button id="dl-btn" onclick="lazyDownload()"><img src="https://i.ibb.co/w0PvGHj/love-kirti.png" alt="download_logo" width="110px" height="35px"/>
+	    </button>
+       </div>
+  <script>      
+    const currentUrl = window.location.href;
+    const finalUrl = currentUrl.replace("/watch/", "/");
 
-        uncopyableElement.addEventListener("selectstart", function (event) {
-            event.preventDefault();
-        });
+    function playOnline() {
+        const finalLinkUrl = finalUrl;
+        const vlcUrl = `vlc://${finalLinkUrl}`;
+        window.location.href = vlcUrl;
+    }
+
+    function playOnlineMx() {
+        const finalLinkUrl = finalUrl;
+        const openMx = `intent:${finalLinkUrl}#Intent;package=com.mxtech.videoplayer.ad;S.title={{filename}};end`;
+        window.location.href = openMx;
+    }
+    
+    function playOnlinesp() {
+        const finalLinkUrl = finalUrl;
+        const spUrl = `intent:${finalLinkUrl}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`;
+        window.location.href = spUrl;
+    }
+    
+    function playOnlinepi() {
+        const finalLinkUrl = finalUrl;
+        const piUrl = `playit://playerv2/video?url=${finalLinkUrl}&amp;title={{file_name}}`;
+        window.location.href = piUrl;
+    }
+
+    function lazyDownload() {
+            const finalLinkUrl = finalUrl;
+            window.location.href = finalLinkUrl;
+    }
+</script>
+ <!-- disabling right click -->
+    <script>
+        document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (
+            e.key === 'F12' ||
+            (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+            (e.ctrlKey && e.key === 'u') ||
+            e.ctrlKey ||
+            e.shiftKey ||
+            e.altKey
+        ) {
+            e.preventDefault();
+        }
     });
 </script>
-<script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
-<script src="https://proavipatil.github.io/data/fs/src/script.js"></script>
+       <!-- <div>
+          <center>
 
-</html>
+YOUR ADS 
+
+          </center>  --> 
+<footer>
+        <p style="font-size: 10px; color:#7b89a3;padding-top: 30px ;margin:0px 10px; border-top: 1px solid #c2cee3;">
+      This website only provide service that help you convert your video to link easily. Stream disk is a cloud storage service that lets you save files online and sync them to your devices You can report the file/video that contains a problem like copyright, porn, violence, etc, we will not provide service for those file/videos. Send DMCA: Report <a href="https://telegram.dog/iPapdiscussion" style="color: darkorange"><b>Here</b></a>
+      <p style="text-align:center">&copy; StreamDisk 2023-2024 </p>
+      <!--
+      YOUR ADS 
+      -->
+</footer>    
+</body>
+        </html>
