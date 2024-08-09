@@ -228,41 +228,36 @@ YOUR ADS
     -->
     <!--Video Player Start-->
 
-            <div class="container">
-              <video
-                id="myVideo"
-                controls=""
-                src="{{file_url}}"
-                width="100%"
-                height="auto"
-              >
-                Your browser does not support the video tag.
-              </video>
+            <div class="justify-content-center align-items-center w-100 d-flex  flex-wrap">
+            <div class="lg:w-9/12 lg:px-12 lg:py-4 w-full  border border-danger wow animate__animated animate__fadeInLeft">
+                <video id="player" class="player " playsinline controls>
+                    <source src="%s" type="video/mp4">
+                </video>
             </div>
-            <script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
-            <script>
-              const controls = [
-                'play-large',
-                'rewind','play', 
-                'fast-forward', 
-                'progress', 
-                'current-time',
-                'duration',
-                'mute',
-                'captions',
-                'settings',
-                'pip',
-                'airplay',
-                'fullscreen'
-              ];
-              document.addEventListener("DOMContentLoaded", () => {
-                const player = Plyr.setup("#myVideo", {
-                  controls,
-                  adTagUrl:"https://www.videosprofitnetwork.com/watch.xml?key=29654bca221e8261067ac49af92b392b",
-                  skipButton:{enabled: true, text: 'Skip ad', delay: 10}
-                });
-              });
-            </script>
+        </div>
+            <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
+	<script>
+        const controls = [
+            'play-large',
+            'rewind','play', 
+            'fast-forward', 
+            'progress', 
+            'current-time',
+            'duration',
+            'mute',
+            'volume',
+            'captions',
+            'settings',
+            'pip',
+            'airplay',
+            'download',
+            'fullscreen'
+        ];
+        document.addEventListener('DOMContentLoaded', () => {
+            const player = Plyr.setup('.player', { controls });
+        });
+
+    </script>
            
             <!--Video Player End-->
     </div>
