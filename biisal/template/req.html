@@ -90,7 +90,7 @@
     #button-container2 button#dl-btn,
     #button-container2 button#tgfile-btn,
     #button-container2 button#tg-btn {
-        background-color: #2D76FF; 
+        background-color: #ff7308; 
         color: #ffffff; 
     }
 
@@ -126,46 +126,16 @@
 <div style="margin-bottom: 7px; margin-top: 7px"></div>
 <div class="site-content">
 
-<!--Video Player Start-->
-
-            <div class="outer">
-        <div class="inner">
-            <div class="main" id="main">
-                <video id="player" class="player" src="{{file_url}}" type="video/mp4" playsinline controls
-                    width="100%"></video>
-                <div class="player"></div>
-            <script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
-            <script>
-              const controls = [
-                'play-large',
-                'rewind','play', 
-                'fast-forward', 
-                'progress', 
-                'current-time',
-                'duration',
-                'mute',
-                'captions',
-                'settings',
-                'pip',
-                'airplay',
-                'fullscreen'
-              ];
-              document.addEventListener("DOMContentLoaded", () => {
-                const player = Plyr.setup("#myVideo", {
-                  controls,
-                  adTagUrl:"https://www.videosprofitnetwork.com/watch.xml?key=29654bca221e8261067ac49af92b392b",
-                  skipButton:{enabled: true, text: 'Skip ad', delay: 10}
-                });
-              });
-            </script>
+<!--Video Player Start-->          
  <!--Video Player End-->
     </div>
-	  <p style="font-size: 7px; color:#f20a0a;">If the screen turns white then your browser is not supporting the video, then you can play it using the Application</p>
+	  <p style="font-size: 9px; color:#0a86f2;">If you download a movie or web series and the sound is not there then you can use VLC player</p>
+	  <p style="font-size: 9px; color:#f20a0a;">अगर आप मूवी डाउनलोड करते हैं या वेब सीरीज से आवाज नहीं आती तो आप VLC player का उपयोग करें</p>
     <div class="containerbox"> 
      <div id="info-box">
-     <p style="font-size: 10px; color:#120e0e;">ꜰɪʟᴇ ɴᴀᴍᴇ : {{file_name}}</p>
-     <p style="font-size: 10px; color:#120e0e;">ꜰɪʟᴇ ꜱɪᴢᴇ : {{file_size}}</p>
-     <p style="font-size: 10px; color:#120e0e;">Shares by : Team i Papcorn Prime</p>     
+     <p style="font-size: 12px; color:#120e0e;">ꜰɪʟᴇ ɴᴀᴍᴇ : {{file_name}}</p>
+     <p style="font-size: 12px; color:#120e0e;">ꜰɪʟᴇ ꜱɪᴢᴇ : {{file_size}}</p>
+     <p style="font-size: 12px; color:#120e0e;">Shares by : Team i Papcorn Prime</p>     
 	</div>
         <div style="margin-bottom: 5px; margin-top: 10px">Stream Options :</div>
         <div id="button-container1">
