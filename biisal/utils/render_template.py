@@ -1,4 +1,4 @@
-from biisal.vars import Var
+from biisal.vars import Var, replace_username
 from biisal.bot import StreamBot
 from biisal.utils.human_readable import humanbytes
 from biisal.utils.file_properties import get_file_ids
@@ -38,7 +38,7 @@ async def render_page(id, secure_hash, src=None):
     file_name = file_data.file_name.replace("_", " ")
 
     return template.render(
-        file_name=file_name,
+        file_name=replace_username(file_name),
         file_url=src,
         file_size=file_size,
         file_unique_id=file_data.unique_id,
