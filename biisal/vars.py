@@ -42,7 +42,7 @@ class Var(object):
     else:
         ON_HEROKU = False
     FQDN = str(getenv('FQDN', 'BIND_ADRESS:PORT')) if not ON_HEROKU or getenv('FQDN', 'filetolink-filetolinkbot.koyeb.app') else APP_NAME+'.herokuapp.com'
-    FQDN = "filetolink-filetolinkbot.koyeb.app"
+    FQDN = "uncomfortable-courtney-akshaychand2002-81a8c398.koyeb.app"
     HAS_SSL = True 
     HAS_SSL=bool(getenv('HAS_SSL',True))
     if HAS_SSL:
