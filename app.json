@@ -94,20 +94,23 @@
             "required": false
         },
         "name": {
-            "description": " Session Name for Bot [ Add biisal]",
+            "description": "Session Name for Bot",
             "value": "File-To-Link",
             "required": false
+        },
+        "BAN_ALERT": {
+            "description": "[Optional] Add the text you wish to display when attempting to get links while banned."
+            
         }
     },
-    "buildpacks": [
-        {
-            "url": "heroku/python"
-        }
-    ],
+    "addons": [],
+    "buildpacks": [{
+        "url": "heroku/python"
+    }],
     "formation": {
         "web": {
             "quantity": 1,
-            "size": "free"
+            "size": "eco"
         }
     }
 }
