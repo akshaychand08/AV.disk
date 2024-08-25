@@ -3,13 +3,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta property="og:image" content="https://i.ibb.co/M8S0Zzj/live-streaming.png" itemprop="thumbnailUrl">
+    <link rel="icon" href="https://i.ibb.co/SyZdV8n/20231106-184147.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>%s</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>i Papcorn Prime {{ file_name }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <style>
       marquee{
       font-size: 22px;
@@ -115,27 +114,65 @@
     #button-container2 button:hover {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
-    
-
 </style>
-
 </head>
 
-<body>
-<div class="set-container">
-    <div class="container">
-    <header>
-        <marquee bgcolor="#808080">
-<div class="toogle"></div>
-        <div id="file-name">
-            %s
-        </div>
-</marquee>
-    </header>
-        <tag src="%s" class="player"></tag>
+<body>   
+<div id="banner">
+    <div class="left-content">
+        <span class="black-text">i Papcorn Prime</span>
     </div>
-<div class="containerbox"> 
-	<div style="margin-bottom: 5px; margin-top: 10px">𝐒𝐭𝐫𝐞𝐚𝐦 𝐎𝐩𝐭𝐢𝐨𝐧𝐬 :</div>
+</div>
+<div style="margin-bottom: 7px; margin-top: 7px"></div>
+<div class="site-content">
+
+<!--Video Player Start-->
+
+            <div class="container">
+              <video
+                id="myVideo"
+                controls=""
+                src="{{file_url}}"
+                width="100%"
+                height="auto"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
+            <script>
+              const controls = [
+                'play-large',
+                'rewind','play', 
+                'fast-forward', 
+                'progress', 
+                'current-time',
+                'duration',
+                'mute',
+                'captions',
+                'settings',
+                'pip',
+                'airplay',
+                'fullscreen'
+              ];
+              document.addEventListener("DOMContentLoaded", () => {
+                const player = Plyr.setup("#myVideo", {
+                  controls,
+                  adTagUrl:"https://www.videosprofitnetwork.com/watch.xml?key=29654bca221e8261067ac49af92b392b",
+                  skipButton:{enabled: true, text: 'Skip ad', delay: 10}
+                });
+              });
+            </script>
+ <!--Video Player End-->
+    </div>
+	  <p style="font-size: 7px; color:#f20a0a;">If the screen turns white then your browser is not supporting the video, then you can play it using the Application</p>
+    <div class="containerbox"> 
+     <div id="info-box">
+     <p style="font-size: 10px; color:#120e0e;">ꜰɪʟᴇ ɴᴀᴍᴇ : {{file_name}}</p>
+     <p style="font-size: 10px; color:#120e0e;">ꜰɪʟᴇ ꜱɪᴢᴇ : {{file_size}}</p>
+     <p style="font-size: 10px; color:#120e0e;">Shares by : Team ARS & i Papcorn Prime Bot</p>     
+	</div>
+        <div style="margin-bottom: 5px; margin-top: 10px">Stream Options :</div>
         <div id="button-container1">
             <button id="vlc-btn" onclick="playOnline()">
                 <img src="https://i.ibb.co/GtnGhBV/videolan-vlc-logo-icon-170258.png" alt="vlc_logo" width="110px" height="40px"/>
