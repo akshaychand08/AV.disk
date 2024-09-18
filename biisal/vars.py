@@ -35,20 +35,14 @@ class Var(object):
     NO_PORT = bool(getenv('NO_PORT', False))
     APP_NAME = None
     OWNER_USERNAME = str(getenv('OWNER_USERNAME', 'AkshayChand08'))
-    if 'DYNO' in environ:
-        ON_HEROKU = True
-        APP_NAME = str(getenv('APP_NAME')) #dont need to fill anything here
-    
-    else:
-        ON_HEROKU = False
-    FQDN = str(getenv('FQDN', 'BIND_ADRESS:PORT')) if not ON_HEROKU or getenv('FQDN', 'dizzy-wilona-akshaychand12-ad11d9e5.koyeb.app') else APP_NAME+'.herokuapp.com'
-    FQDN = "dizzy-wilona-akshaychand12-ad11d9e5.koyeb.app/"
-    HAS_SSL = True 
-    HAS_SSL=bool(getenv('HAS_SSL',True))
+    FQDN = str(environ.get("FQDN", BIND_ADRESS))
+    #FQDN = "malikbots.onrender.com" 
+    #HAS_SSL = True
+    HAS_SSL=bool(environ.get('HAS_SSL',False))
     if HAS_SSL:
         URL = "https://{}/".format(FQDN)
     else:
-        URL = "http://{}/".format(FQDN)
+        URL = "https://{}/".format(FQDN)
     DATABASE_URL = str(getenv('DATABASE_URL', 'mongodb+srv://akshaychand:akshaychand@cluster0.3gwaqm0.mongodb.net/?retryWrites=true&w=majority'))
     UPDATES_CHANNEL = str(getenv('UPDATES_CHANNEL', None)) 
     BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "")).split()))   
