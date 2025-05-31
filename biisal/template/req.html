@@ -6,34 +6,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta property="og:image" content="https://cdn.jsdelivr.net/gh/fyaz05/Resources@main/HydroStreamerBot/live.png">
   <title>{{file_name}} | iPapcorn Player</title>
+
+  <!-- Stylesheets -->
   <link href="https://cdn.plyr.io/3.7.8/plyr.css" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            brand: ['Roboto', 'sans-serif'],
+            brand: ['Orbitron', 'sans-serif'],
             body: ['Roboto', 'sans-serif']
           }
         }
       }
-    }
+    };
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
 </head>
 <body class="bg-gray-950 text-white font-body transition-colors duration-300" id="pageBody">
   <div class="min-h-screen flex flex-col items-center justify-center px-4">
+    
+    <!-- Header -->
     <header class="w-full text-center py-6 flex flex-col items-center">
-  <h1 class="text-3xl md:text-5xl font-extrabold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 drop-shadow-lg animate-pulse">
-  🎬 {{file_name}}
-</h1>
-
-      <h2 class="text-sm md:text-lg text-gray-400 mt-2">Powered by <span class="text-blue-500 font-semibold">iPapcorn Player (update2.0)</span></h2>
-      <button onclick="toggleDarkMode()" class="mt-4 px-4 py-1 text-sm bg-gray-700 hover:bg-gray-600 rounded-full transition">Toggle Dark/Light</button>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 drop-shadow-lg animate-pulse">
+        🎬 {{file_name}}
+      </h1>
+      <h2 class="text-sm md:text-lg text-gray-400 mt-2">
+        Powered by <span class="text-blue-500 font-semibold">iPapcorn Player (update2.01)</span>
+      </h2>
+      <button onclick="toggleDarkMode()" class="mt-4 px-4 py-1 text-sm bg-gray-700 hover:bg-gray-600 rounded-full transition">
+        Toggle Dark/Light
+      </button>
     </header>
 
+    <!-- Main Player -->
     <main class="w-full max-w-4xl">
       <div class="rounded-2xl overflow-hidden shadow-lg border border-blue-800">
         <video id="videoPlayer" class="plyr w-full" controls poster="https://i.ibb.co/qN4hqk3/Akshay-Chand.jpg">
@@ -42,36 +51,44 @@
         </video>
       </div>
 
+      <!-- Button Controls -->
       <div class="flex flex-wrap gap-4 justify-center mt-6">
+
+        <!-- Stream in other player -->
         <div class="relative group">
-          <button class="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-sm shadow-md flex items-center gap-2">
-            <i class="fas fa-play-circle"></i> Stream in others player 
+          <button class="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded shadow-md flex items-center gap-2">
+            <i class="fas fa-play-circle"></i> Stream in other players
           </button>
           <div class="absolute hidden group-hover:flex flex-col bg-gray-900 border border-blue-600 mt-2 rounded-md p-2 z-10">
-            <a class="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded-md" onclick="playOnline('vlc')">
+            <a onclick="playOnline('vlc')" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded-md cursor-pointer">
               <img src="https://cdn.jsdelivr.net/gh/fyaz05/Resources@main/HydroStreamerBot/vlc.png" class="w-5 h-5" alt="VLC"> VLC
             </a>
-            <a class="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded-md" onclick="playOnline('pit')">
+            <a onclick="playOnline('pit')" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded-md cursor-pointer">
               <img src="https://i.ibb.co/YBqZ8fc/unnamed.png" class="w-5 h-5" alt="PLAYit"> PLAYit
             </a>
-            <a class="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded-md" onclick="playOnline('mx')">
+            <a onclick="playOnline('mx')" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded-md cursor-pointer">
               <img src="https://cdn.jsdelivr.net/gh/fyaz05/Resources@main/HydroStreamerBot/mx.png" class="w-5 h-5" alt="MX"> MX Player
             </a>
           </div>
         </div>
 
-        <button onclick="download()" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 hover:bg-green-700 rounded-sm shadow-md flex items-center gap-2">
+        <!-- Download Button -->
+        <button onclick="download()" class="px-6 py-2 bg-green-600 hover:bg-green-700 rounded shadow-md flex items-center gap-2">
           <i class="fas fa-cloud-download-alt"></i> Download
         </button>
 
-        <button onclick="copyLink()" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-sm shadow-md flex items-center gap-2">
+        <!-- Copy Link Button -->
+        <button onclick="copyLink()" class="px-6 py-2 bg-gray-600 hover:bg-gray-700 rounded shadow-md flex items-center gap-2">
           <i class="fas fa-link"></i> Copy Link
         </button>
       </div>
 
-      <p class="text-center text-sm mt-4 text-gray-400">⚠️ For best audio playback, use VLC player if issues occur.</p>
+      <p class="text-center text-sm mt-4 text-gray-400">
+        ⚠️ For best audio playback, use VLC player if issues occur.
+      </p>
     </main>
 
+    <!-- Footer -->
     <footer class="mt-10 text-center text-sm">
       <a href="https://t.me/iPapcorn_Prime" target="_blank" class="text-blue-400 hover:underline">
         <i class="fab fa-telegram-plane"></i> Join our Telegram channel
@@ -79,66 +96,59 @@
     </footer>
   </div>
 
+  <!-- Scripts -->
   <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const videoElement = document.querySelector('.plyr');
-    const player = new Plyr(videoElement);
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const videoElement = document.querySelector('.plyr');
+      const player = new Plyr(videoElement);
+      videoElement.currentTime = 0;
+    });
 
-    // Ensure video starts from beginning on reload
-    videoElement.currentTime = 0;
+    const currentUrl = window.location.href;
+    const finalUrl = currentUrl.replace("/watch/", "/dl/");
+    const cleanFinalUrl = finalUrl.replace(/^https?:\/\//, '');
 
-    // Test if custom vlc:// protocol is supported
-    const vlcTest = document.createElement('a');
-    vlcTest.href = 'vlc://test';
-    if (vlcTest.protocol !== 'vlc:') {
-      console.warn('Custom protocols like vlc:// may be blocked by browser. Try opening manually.');
+    function playOnline(player) {
+      const playerUrls = {
+        vlc: `vlc://${cleanFinalUrl}`,
+        pit: `playit://playerv2/video?url=${finalUrl}&title={{file_name}}`,
+        mx: `intent:${finalUrl}#Intent;package=com.mxtech.videoplayer.ad;end`
+      };
+
+      const target = playerUrls[player] || finalUrl;
+
+      const temp = document.createElement('a');
+      temp.href = target;
+      document.body.appendChild(temp);
+      temp.click();
+      temp.remove();
     }
-  });
 
-  const currentUrl = window.location.href;
-  const finalUrl = currentUrl.replace("/watch/", "/dl/");
-  const cleanFinalUrl = finalUrl.replace(/^https?:\/\//, ''); // remove protocol once for vlc://
+    function download() {
+      window.location.href = finalUrl;
+    }
 
-  function playOnline(player) {
-    const playerUrls = {
-      vlc: `vlc://https://${cleanFinalUrl}`,
-      pit: `playit://playerv2/video?url=${finalUrl}&title={{file_name}}`,
-      mx: `intent:${finalUrl}#Intent;package=com.mxtech.videoplayer.ad;end`
-    };
+    function copyLink() {
+      navigator.clipboard.writeText(finalUrl)
+        .then(() => {
+          const feedback = document.createElement('div');
+          feedback.textContent = "📋 Link copied to clipboard!";
+          feedback.className = "fixed bottom-4 right-4 bg-green-700 text-white px-4 py-2 rounded shadow-lg animate-pulse z-50";
+          document.body.appendChild(feedback);
+          setTimeout(() => feedback.remove(), 3000);
+        })
+        .catch(err => console.error('Failed to copy link:', err));
+    }
 
-    const target = playerUrls[player] || finalUrl;
-
-    const temp = document.createElement('a');
-    temp.href = target;
-    document.body.appendChild(temp);
-    temp.click();
-    temp.remove();
-  }
-
-  function download() {
-    window.location.href = finalUrl;
-  }
-
-  function copyLink() {
-    navigator.clipboard.writeText(finalUrl)
-      .then(() => {
-        const feedback = document.createElement('div');
-        feedback.textContent = "📋 Link copied to clipboard!";
-        feedback.className = "fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded shadow-lg animate-pulse";
-        document.body.appendChild(feedback);
-        setTimeout(() => feedback.remove(), 3000);
-      })
-      .catch(err => console.error('Failed to copy link:', err));
-  }
-
-  function toggleDarkMode() {
-    document.getElementById('pageBody').classList.toggle('dark');
-    document.getElementById('pageBody').classList.toggle('bg-white');
-    document.getElementById('pageBody').classList.toggle('text-black');
-  }
-</script>
+    function toggleDarkMode() {
+      const body = document.getElementById('pageBody');
+      body.classList.toggle('dark');
+      body.classList.toggle('bg-white');
+      body.classList.toggle('text-black');
+    }
+  </script>
 
 </body>
 </html>
