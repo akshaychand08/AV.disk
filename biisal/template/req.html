@@ -27,7 +27,7 @@
   <div class="min-h-screen flex flex-col items-center justify-center px-4">
     <header class="w-full text-center py-6 flex flex-col items-center">
       <h1 class="text-3xl md:text-5xl font-brand tracking-wider text-blue-400">🎬{{file_name}}</h1>
-      <h2 class="text-sm md:text-lg text-gray-400 mt-2">Powered by <span class="text-blue-500 font-semibold">iPapcorn Player</span></h2>
+      <h2 class="text-sm md:text-lg text-gray-400 mt-2">Powered by <span class="text-blue-500 font-semibold">iPapcorn Player (update2.0)</span></h2>
       <button onclick="toggleDarkMode()" class="mt-4 px-4 py-1 text-sm bg-gray-700 hover:bg-gray-600 rounded-full transition">Toggle Dark/Light</button>
     </header>
 
@@ -78,61 +78,64 @@
 
   <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const videoElement = document.querySelector('.plyr');
-      const player = new Plyr(videoElement);
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const videoElement = document.querySelector('.plyr');
+    const player = new Plyr(videoElement);
 
-      // Fix for ensuring video starts from beginning on reload
-      videoElement.currentTime = 0;
+    // Ensure video starts from beginning on reload
+    videoElement.currentTime = 0;
 
-      // Prevent browser from replacing VLC URI with http
-      const vlcTest = document.createElement('a');
-      vlcTest.href = 'vlc://test';
-      if (vlcTest.protocol !== 'vlc:') {
-        console.warn('Custom protocols like vlc:// may be blocked by browser. Try opening manually.');
-      }
-    });
-
-    const currentUrl = window.location.href;
-    const finalUrl = currentUrl.replace("/watch/", "/dl/");
-
-    function playOnline(player) {
-      const playerUrls = {
-        vlc: `vlc://${finalUrl}`,
-        pit: `playit://playerv2/video?url=${finalUrl}&title={{file_name}}`,
-        mx: `intent:${finalUrl}#Intent;package=com.mxtech.videoplayer.ad;end`
-      };
-      const target = playerUrls[player] || finalUrl;
-
-      const temp = document.createElement('a');
-      temp.href = target;
-      document.body.appendChild(temp);
-      temp.click();
-      temp.remove();
+    // Test if custom vlc:// protocol is supported
+    const vlcTest = document.createElement('a');
+    vlcTest.href = 'vlc://test';
+    if (vlcTest.protocol !== 'vlc:') {
+      console.warn('Custom protocols like vlc:// may be blocked by browser. Try opening manually.');
     }
+  });
 
-    function download() {
-      window.location.href = finalUrl;
-    }
+  const currentUrl = window.location.href;
+  const finalUrl = currentUrl.replace("/watch/", "/dl/");
+  const cleanFinalUrl = finalUrl.replace(/^https?:\/\//, ''); // remove protocol once for vlc://
 
-    function copyLink() {
-      navigator.clipboard.writeText(finalUrl)
-        .then(() => {
-          const feedback = document.createElement('div');
-          feedback.textContent = "📋 Link copied to clipboard!";
-          feedback.className = "fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded shadow-lg animate-pulse";
-          document.body.appendChild(feedback);
-          setTimeout(() => feedback.remove(), 3000);
-        })
-        .catch(err => console.error('Failed to copy link:', err));
-    }
+  function playOnline(player) {
+    const playerUrls = {
+      vlc: `vlc://https://${cleanFinalUrl}`,
+      pit: `playit://playerv2/video?url=${finalUrl}&title={{file_name}}`,
+      mx: `intent:${finalUrl}#Intent;package=com.mxtech.videoplayer.ad;end`
+    };
 
-    function toggleDarkMode() {
-      document.getElementById('pageBody').classList.toggle('dark');
-      document.getElementById('pageBody').classList.toggle('bg-white');
-      document.getElementById('pageBody').classList.toggle('text-black');
-    }
-  </script>
+    const target = playerUrls[player] || finalUrl;
+
+    const temp = document.createElement('a');
+    temp.href = target;
+    document.body.appendChild(temp);
+    temp.click();
+    temp.remove();
+  }
+
+  function download() {
+    window.location.href = finalUrl;
+  }
+
+  function copyLink() {
+    navigator.clipboard.writeText(finalUrl)
+      .then(() => {
+        const feedback = document.createElement('div');
+        feedback.textContent = "📋 Link copied to clipboard!";
+        feedback.className = "fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded shadow-lg animate-pulse";
+        document.body.appendChild(feedback);
+        setTimeout(() => feedback.remove(), 3000);
+      })
+      .catch(err => console.error('Failed to copy link:', err));
+  }
+
+  function toggleDarkMode() {
+    document.getElementById('pageBody').classList.toggle('dark');
+    document.getElementById('pageBody').classList.toggle('bg-white');
+    document.getElementById('pageBody').classList.toggle('text-black');
+  }
+</script>
+
 </body>
 </html>
