@@ -1,102 +1,125 @@
-<!-- Code by fyaz05 -->
-
+<!-- Advanced Streaming Page | Tailwind + Plyr + Smart UX by DECODER -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/fyaz05/Resources@main/HydroStreamerBot/live.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>{{file_name}}</title>
-    <link rel="icon" href="https://cdn.jsdelivr.net/gh/fyaz05/Resources@main/HydroStreamerBot/Thunder.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fyaz05/Resources@main/HydroStreamerBot/reqStyles.css">
-<body>
-    <div class="container">
-        <header>
-            <h1 id="file-name">{{file_name}}</h1>
-        </header>
-        <div class="player-container">
-            <div class="video-wrapper">
-                <video class="plyr" controls poster="https://i.ibb.co/qN4hqk3/Akshay-Chand.jpg" alt="Video Player Poster Image">
-                    <source src="{{file_url}}" type="video/mp4" alt="Video Source">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
-        <p class="unsupported-message">⚠️ If you download a movie or web series and the sound is not there then you can use VLC player.</p>
-        <div class="controls">
-            <div class="dropdown">
-                <button class="btn">
-                    <i class="fas fa-play-circle"></i> Stream
-                </button>
-                <div class="dropdown-content">
-                    <a href="#" onclick="playOnline('vlc')">
-                        <img src="https://cdn.jsdelivr.net/gh/fyaz05/Resources@main/HydroStreamerBot/vlc.png" alt="VLC Mobile" class="player-logo"> VLC Mobile
-                    </a>
-                    <a href="#" onclick="playOnline('pit')">
-                        <img src="https://i.ibb.co/YBqZ8fc/unnamed.png" alt="Playit Player" class="player-logo"> PLAYit Player 
-                    </a>
-                    <a href="#" onclick="playOnline('mx')">
-                        <img src="https://cdn.jsdelivr.net/gh/fyaz05/Resources@main/HydroStreamerBot/mx.png" alt="MX Player" class="player-logo"> MX Player
-		    </a>
-                </div>
-            </div>
-            <button class="btn download" onclick="download()">
-                <i class="fas fa-cloud-download-alt"></i> Download
-            </button>
-            <button class="btn copy-link" onclick="copyLink()">
-                <i class="fas fa-link"></i> Copy Link
-            </button>
-        </div>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/fyaz05/Resources@main/HydroStreamerBot/live.png" />
+  <title>{{file_name}}</title>
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/fyaz05/Resources@main/HydroStreamerBot/Thunder.jpg" />
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/4f8f5f91c7.js" crossorigin="anonymous"></script>
+  <style>
+    .feedback {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background: #1e293b;
+      color: white;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      animation: fadeInOut 3s ease-in-out;
+      z-index: 999;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-950 text-white font-sans">
+  <main class="max-w-5xl mx-auto px-4 py-8">
+    <header class="mb-6 text-center">
+      <h1 class="text-4xl font-bold text-cyan-400">{{file_name}}</h1>
+      <p class="mt-2 text-sm text-gray-400">Enjoy seamless streaming in your favorite player</p>
+    </header>
+
+    <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-xl mb-6">
+      <video class="plyr w-full h-full" controls poster="https://i.ibb.co/qN4hqk3/Akshay-Chand.jpg">
+        <source src="{{file_url}}" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
     </div>
-    <footer>
-        <!-- Replace the below link with your link -->
-        <a href="https://t.me/iPapcorn_Prime" target="_blank">
-            <i class="fab fa-telegram-plane"></i> Join our Telegram channel
-        </a>
+
+    <p class="text-center text-yellow-300 text-xs mb-4">⚠️ If audio doesn't work after download, use VLC Player.</p>
+
+    <div class="flex flex-wrap justify-center gap-4 mb-8">
+      <!-- Streaming Dropdown -->
+      <div class="relative group">
+        <button class="bg-cyan-600 hover:bg-cyan-700 transition px-5 py-2.5 rounded-md text-white font-medium flex items-center gap-2">
+          <i class="fas fa-play-circle"></i> Stream
+        </button>
+        <div class="absolute hidden group-hover:flex flex-col bg-gray-800 border border-gray-700 mt-2 rounded-md z-20 w-48 p-2">
+          <button onclick="playOnline('vlc')" class="flex items-center gap-2 px-3 py-2 hover:bg-gray-700 rounded">
+            <img src="https://cdn.jsdelivr.net/gh/fyaz05/Resources@main/HydroStreamerBot/vlc.png" class="w-5 h-5" /> VLC Mobile
+          </button>
+          <button onclick="playOnline('pit')" class="flex items-center gap-2 px-3 py-2 hover:bg-gray-700 rounded">
+            <img src="https://i.ibb.co/YBqZ8fc/unnamed.png" class="w-5 h-5" /> PLAYit Player
+          </button>
+          <button onclick="playOnline('mx')" class="flex items-center gap-2 px-3 py-2 hover:bg-gray-700 rounded">
+            <img src="https://cdn.jsdelivr.net/gh/fyaz05/Resources@main/HydroStreamerBot/mx.png" class="w-5 h-5" /> MX Player
+          </button>
+        </div>
+      </div>
+
+      <!-- Download Button -->
+      <button onclick="download()" class="bg-green-600 hover:bg-green-700 transition px-5 py-2.5 rounded-md text-white font-medium flex items-center gap-2">
+        <i class="fas fa-download"></i> Download
+      </button>
+
+      <!-- Copy Link Button -->
+      <button onclick="copyLink()" class="bg-yellow-500 hover:bg-yellow-600 transition px-5 py-2.5 rounded-md text-black font-medium flex items-center gap-2">
+        <i class="fas fa-link"></i> Copy Link
+      </button>
+    </div>
+
+    <footer class="text-center mt-8">
+      <a href="https://t.me/iPapcorn_Prime" target="_blank" class="text-blue-400 hover:underline text-sm">
+        <i class="fab fa-telegram"></i> Join our Telegram Channel
+      </a>
     </footer>
+  </main>
 
-    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const videoElement = document.querySelector('.plyr');
-            new Plyr(videoElement);
-        });
+  <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+  <script>
+    new Plyr(document.querySelector('.plyr'));
 
-        const currentUrl = window.location.href;
-        const finalUrl = currentUrl.replace("/watch/", "/dl/");
+    const currentUrl = window.location.href;
+    const finalUrl = currentUrl.replace("/watch/", "/dl/");
+    const fileName = "{{file_name}}";
 
-        function playOnline(player) {
-            const playerUrls = {
-                vlc: `vlc://${finalUrl}`,
-                pit: `playit://playerv2/video?url=${finalUrl}&amp;title={{file_name}}`,
-                mx: `intent:${finalUrl}#Intent;package=com.mxtech.videoplayer.ad;end`,
-                np: `nplayer-${finalUrl}`,
-                sp: `intent:${finalUrl}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`,
-                km: `intent:${finalUrl}#Intent;package=com.kmplayer;end`
-            };
-            window.location.href = playerUrls[player] || finalUrl;
-        }
+    function playOnline(player) {
+      const encodedUrl = encodeURIComponent(finalUrl);
+      const urls = {
+        vlc: `intent:${finalUrl}#Intent;scheme=http;package=org.videolan.vlc;type=video/mp4;S.title=${fileName};end`,
+        pit: `playit://playerv2/video?url=${encodedUrl}&title=${fileName}`,
+        mx: `intent:${finalUrl}#Intent;package=com.mxtech.videoplayer.ad;end`
+      };
+      window.location.href = urls[player] || finalUrl;
+    }
 
-        function download() {
-            window.location.href = finalUrl;
-        }
+    function download() {
+      window.location.href = finalUrl;
+    }
 
-        function copyLink() {
-            navigator.clipboard.writeText(finalUrl)
-                .then(() => {
-                    const feedback = document.createElement('div');
-                    feedback.className = 'feedback';
-                    feedback.textContent = "📋 Link copied to clipboard!";
-                    feedback.setAttribute("role", "alert");
-                    document.body.appendChild(feedback);
-                    setTimeout(() => feedback.remove(), 3000);
-                })
-                .catch(err => console.error('Could not copy text: ', err));
-        }
-    </script>
+    function copyLink() {
+      navigator.clipboard.writeText(finalUrl).then(() => {
+        const feedback = document.createElement('div');
+        feedback.className = 'feedback';
+        feedback.textContent = '📋 Link copied to clipboard!';
+        document.body.appendChild(feedback);
+        setTimeout(() => feedback.remove(), 3000);
+      });
+    }
+  </script>
 </body>
+
 </html>
