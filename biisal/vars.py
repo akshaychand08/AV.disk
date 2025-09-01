@@ -22,12 +22,12 @@ class Var(object):
 
     API_ID = int(getenv('API_ID', '22301351'))
     API_HASH = str(getenv('API_HASH', '3035f2bbd92a9c5174d174d92b52b25b'))
-    BOT_TOKEN = str(getenv('BOT_TOKEN' , '6840063368:AAGnjZKnqGAF8zNKQ7OngvzByT0ExjlWyYw'))
-    name = str(getenv('name', 'Testing_xyz_01bot'))
+    BOT_TOKEN = str(getenv('BOT_TOKEN' , '8231344175:AAFQFqx9RtqW3A2t4EE4oaIfylKjfaddr4M'))
+    name = str(getenv('name', '@Testadm789bot'))
     SLEEP_THRESHOLD = int(getenv('SLEEP_THRESHOLD', '60'))
     WORKERS = int(getenv('WORKERS', '4'))
-    BIN_CHANNEL = int(getenv('BIN_CHANNEL', '-1002222888781'))
-    NEW_USER_LOG = int(getenv('NEW_USER_LOG', '-1002222888781'))
+    BIN_CHANNEL = int(getenv('BIN_CHANNEL', '-1002108978238'))
+    NEW_USER_LOG = int(getenv('NEW_USER_LOG', '-1002108978238'))
     PORT = int(getenv('PORT', '8080'))
     BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
     PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
@@ -47,8 +47,8 @@ class Var(object):
         URL = "https://{}/".format(FQDN)
     else:
         URL = "https://{}/".format(FQDN)
-    FQDN = "bots.hostingup.icu:9003"
-    DATABASE_URL = str(getenv('DATABASE_URL', 'mongodb+srv://akshaychand:akshaychand@cluster0.3gwaqm0.mongodb.net/?retryWrites=true&w=majority'))
+    FQDN = "https://a-s-disk.koyeb.app/"
+    DATABASE_URL = str(getenv('DATABASE_URL', 'mongodb+srv://iPapcorn:iPapcorn@cluster0.52lnvxn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'))
     UPDATES_CHANNEL = str(getenv('UPDATES_CHANNEL', None)) 
     BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "")).split()))   
     BAN_CHNL = list(set(int(x) for x in str(getenv("BAN_CHNL", "")).split()))   
@@ -67,3 +67,4 @@ def replace_username(text):
         text = text.replace(i, "")
 
     return text
+
